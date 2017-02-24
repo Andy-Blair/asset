@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Sigin</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/static/css/signin.css" rel="stylesheet">
+	<link rel="shortcut icon" href="/static/images/title.ico" type="image/x-icon">
+  </head>
+  <body>
+    <div class="container login-forms-center">
+      <form class="form-signin" method="post" action="/asset/login/">
+        <p>{{ loginform.username }}</p>
+        <p>{{ loginform.password }}</p>
+        <!--记住我功能未实现<div class="checkbox">
+          <label>
+            {{ loginform.remember_me }}Remember me
+          </label>
+        </div>-->
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="登录">
+      </form>
+        <div class="form-signin" align="center">
+            <a href="/admin/">管理后台登录</a>
+        </div>
+    </div>
+  </body>
+</html>

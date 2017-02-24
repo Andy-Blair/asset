@@ -1,0 +1,80 @@
+.form{
+  display:inline-block;
+  width:200px;
+  height:30px;
+  margin-right:10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  /*font-size:14px;*/
+  /*line-height:1.42857143;*/
+  /*color:#555;*/
+  /*background-color: #fff;*/
+  /*background-images:none;*/
+  border:1px solid #a4a4a4;
+  border-radius:200px;
+  /*-webkit-box-shadow:inset 0 1px 1px rgba(0,0,0,.075);*/
+  /*box-shadow:inset 0 1px 1px rgba(0,0,0,.075);*/
+  /*-webkit-transition:border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;*/
+  /*-o-transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s;*/
+  /*transition:border-color ease-in-out .15s,box-shadow ease-in-out .15s*/
+}
+
+.down-m{
+  display:inline-block;
+  width:130px;
+  height:30px;
+  padding-left: 5px;
+  border:1px solid #a4a4a4;
+  border-radius:200px;
+}
+
+.mytable{
+    width: 1300px;
+    border: 1px;
+}
+
+.one{
+    width: 100%;
+    height:30px;
+    text-align: center;
+    border: 0;
+}
+.cellwidth{
+    width:100%;
+}
+.multiline{
+     width:100%;
+    height: 100px;
+    border: 0;
+}
+.drop-down-custom{
+    height:30px;
+}
+.modal-backdrop1 {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1040;
+  background-color: #000000;
+  opacity: 0.8;
+}
+
+.modal1 {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  z-index: 1050;
+  max-height: 500px;
+  overflow: auto;
+  width: 560px;
+  margin: -250px 0 0 -280px;
+  background-color: #ffffff;
+  border: 1px solid #999;
+}
+
+.fixed_colum{
+	word-break: break-all;
+	width: 13%;
+}

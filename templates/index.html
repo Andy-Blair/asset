@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Index</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/bootstrap.css.map" rel="stylesheet" type="text/css">
+    <link href="/static/css/buttons.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/yytx.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/bootstrap-table.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/lightbox.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" type="images/x-icon" href="/static/images/title.ico">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12" align="right">
+            <h4 style="display: inline-block">{{ login_user }}</h4>
+            <form method="post" action="/asset/logout/" style="display: inline-block">
+                <button class="button button-box  button-border" style="border: none" type="submit">
+                    <li class="icon-off icon-large"></li>
+                </button>
+            </form>
+        </div>
+        <div class="col-md-12">
+            <div style="height: 80px;">
+                <p><h3 class="text-center">易游天下国际旅行社（北京）有限公司</h3></p>
+                <p><h3 class="text-center">固定资产管理系统</h3></p>
+        </div>
+    </div>
+    </div>
+    <div class="row" style="padding-top: 20px">
+        <div class="col-md-12">
+            {% if super_admin == 'superadmin' or super_admin == 'administrator' %}
+             <div id="toolbar" class="btn-group">
+                <a href="/asset/add/"><button class="button button-royal button-pill button-small">新增</button></a>
+                 <button id="copyadd"  class="button button-royal button-pill button-small" >复制新增</button>
+                 <button id="modify"  class="button button-royal button-pill button-small" >修改</button>
+                 <button id="discard" class="button button-royal button-pill button-small">报废</button>
+                 <a id="discard-real" href="#discard-reason" role="button"
+                   class="button button-royal button-pill button-small" data-toggle="modal" style="display: none"></a>
+                 <form id="discardform" method="post" style="display: inline-block">
+                    <div class="modal fade" id="discard-reason" role="dialog" aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content" style="width: 500px">
+                                <div class="modal-body" style="padding: 0;">
+                                    <div style="text-align: right; padding-right: 6px">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true" style="float: none"><i class="icon-remove"></i></button>
+                                        </div>
+                                    <table align="center" style="text-align: center;width: 450px;height: 90px">
+                                        <tbody>
+                                        <tr>
+                                            <td style="width: 90px; border: 1px solid #999ca0">报废原因</td>
+                                            <td style="border: 1px solid #999ca0">
+                                                <input type="hidden" id="discardid" name="discardid" value="">
+                                                <textarea name="discardreason" required="" style="width: 100%;height: auto;border: none"></textarea>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                    <div style="text-align: center">
+                                        <input id="save" style="margin: 10px;" class="button button-primary button-rounded button-small" type="submit" value="保存">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                 <a id="modal-statistical" href="#statistical" role="button"
+                   class="button button-royal button-pill button-small" data-toggle="modal">统计</a>
+                 <div class="modal fade" id="statistical" role="dialog" aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content" style="width: 500px">
+                                <div class="modal-body" style="padding: 10px;">
+                                    <div style="text-align: right; padding-right: 6px">
+                                        </div>
+                                    <table id="sum_sta" border="1"  align="center" style="text-align: center;width: 450px;height: 90px;">
+
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                <a id="modal-205042" href="#import" role="button"
+                   class="button button-royal button-pill button-small" data-toggle="modal">导入</a>
+                <form enctype="multipart/form-data" method="post" action="/asset/index/dataimport/" style="display: inline-block">
+                    <div class="modal fade" id="import" role="dialog" aria-labelledby="myModalLabel"
+                         aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+                                    <h6 class="modal-title" id="myModalLabel">资产信息导入</h6>
+                                </div>
+                                <div class="modal-body">
+                                    {{ importfile.upload_file }}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+                                    <button type="submit" class="btn btn-primary">导入</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                 <form id="dataexport" method="get" action="/asset/index/dataexport/" style="display: inline-block">
+                    <button class="button button-royal button-pill button-small" type="submit">导出</button>
+                 </form>
+                    <div id="dropdown-list" class="button-dropdown button-dropdown-royal" data-buttons="dropdown">
+                      <button class="button button-royal button-pill button-small"> 列表切换 <i class="icon-caret-down"></i></button>
+                      <ul class="button-dropdown-list is-below">
+                        <li><a style="line-height: 20px;text-align: center" href="/asset/index/">可用资产列表</a></li>
+                        <li><a style="line-height: 20px;text-align: center" href="{% url 'discard_index' %}">报废资产列表</a></li>
+                      </ul>
+                    </div>
+            </div>
+            {% endif %}
+            <table id="infotable"></table>
+        </div>
+    </div>
+</div>
+<script src="/static/js/jquery-3.1.1.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/bootstrap-table.js"></script>
+<script src="/static/js/lightbox.js"></script>
+<script src="/static/js/bootstrap-table-zh-CN.js"></script>
+
+<script type="text/javascript">
+    $(function () {
+        $('#infotable').bootstrapTable({
+            columns: [
+                {checkbox: true},
+                {field: 'ID', title: 'ID', align:'center', valign:'middle', visible:false},
+                {field: 'department', title: '使用部门', width:'',  align:'center', valign:'middle'},
+                {field: 'username', title: '使用人', width:'', align:'center', valign:'middle'},
+                {field: 'assetbrand', title: '品牌', width:'', align:'center', valign:'middle'},
+                {field: 'assettype', title: '型号', width:'', align:'center', valign:'middle'},
+                {field: 'serianumber', title: '序列号', class:'fixed_colum', align:'center', valign:'middle'},
+                {field: 'buytime', title: '采购时间', width:'', align:'center', valign:'middle'},
+                {field: 'buychannel', title: '采购渠道', width:'', align:'center', valign:'middle'},
+                {field: 'buyprice', title: '采购价格', width:'', align:'center', valign:'middle'},
+                {field: 'buyer', title: '采购人', width:'', align:'center', valign:'middle'},
+                {field: 'assetcategory', title: '类别', width:'', align:'center', valign:'middle'},
+                {field: 'usagestatus', title: '使用状态',width:'',align:'center', valign:'middle'},
+                {field: 'place', title: '放置位置', width:'', align:'center', valign:'middle'},
+                {field: 'remark', title: '备注', width:'13%', halign:'center'}
+            ],
+            url: '/asset/index/indexdata/',
+            method: 'get',
+            contentType:'application/json',
+            dataType:'json',
+            toolbar:'#toolbar',
+            pagination: true,
+            sortOrder: "asc",
+            sidePagination: "client",
+            pageNumber: 1,
+            pageSize: 10,
+            pageList: [10, 25, 50, 100, 200],
+            clickToSelect: true,
+            search:true,
+            singleSelect:true,
+        });
+        $('#modify').click(function () {
+            var rowdata = $('#infotable').bootstrapTable('getSelections');
+            location.href = "/asset/modify/" + rowdata[0]['ID'];
+        });
+        $('#copyadd').click(function () {
+            var rowdata = $('#infotable').bootstrapTable('getSelections');
+            location.href = "/asset/copyadd/" + rowdata[0]['ID'];
+        });
+        $('#discard').click(function () {
+            var rowdata = $('#infotable').bootstrapTable('getSelections');
+            if (rowdata[0]['ID'])
+                {
+                    $('#discard-real').click();
+                    $('#discardform').attr("action","/asset/discardasset/" + rowdata[0]['ID'])
+                }
+        });
+        $('#dropdown-list').mouseenter(function () {
+            $(this).children("ul").css('display','block')
+        });
+        $('#dropdown-list').mouseleave(function () {
+            $(this).children("ul").css('display','none')
+        });
+        $('#modal-statistical').click(function () {
+            if ($('#sum_sta').children("tbody").length > 0){  //因为jQuery对象永远都有返回值，所以需要计算其对象长度，>0有，=0无
+            }else {
+               $.ajax({
+                   url:"/asset/index/statistical/",
+                   datatype:"json",
+                   success:function (sta_data) {
+                       t_b = '';
+                        for (var o in sta_data){  //遍历返回的JSON数据,遍历第一级字典,o是字典中的键值
+                            t_title = o;
+                            t_cl = '';
+                            cl_len = Object.keys(sta_data[o]).length * 2;  //先把所有的key取出来再求长度，再计算
+                            for (var i in sta_data[o]){    //遍历二级列表
+                                t_cl +='<td style="width: 90px">' + Object.keys( sta_data[o][i]) + '</td>' +  //取出所有key，因为只有一个，可以不用循环
+                                        '<td style="width: 90px">' + Object.values( sta_data[o][i]) + '</td>';  //取出所有value，只有一个，不用循环
+                            }
+                            t_b += '<tr><td colspan="' + cl_len + '">' + t_title + '</td><tr/>' +
+                                    '<tr>' + t_cl + '</tr>';
+                        }
+                       t_bd = '<tbody>' + t_b + '</tbody>';
+                       $("#sum_sta").append(t_bd);
+                   }
+               })
+            }
+        });
+    });
+    lightbox.option({
+        'showImageNumberLabel':false,
+    })
+</script>
+</body>
+</html>

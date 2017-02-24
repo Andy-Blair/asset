@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}  {% endblock %}</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/bootstrap.css.map" rel="stylesheet" type="text/css">
+    <link href="/static/css/buttons.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/yytx.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" type="image/x-icon" href="/static/images/title.ico">
+</head>
+<body>
+<div class="container-fluid">
+<div class="row">
+    <div class="col-md-12" align="right">
+        <h4 style="display: inline-block">{{ login_user }}</h4>
+        <form method="post" action="/asset/logout/" style="display: inline-block">
+            <button class="button button-box  button-border" style="border: none" type="submit">
+                <li class="icon-off icon-large"></li>
+            </button>
+        </form>
+    </div>
+<div class="text-center">
+    <div class="col-md-12">
+        <h3>{% block page_title %} {% endblock %}</h3>
+    </div>
+    <div class="col-md-12" style="padding-top: 20px">
+        {% block form_head %}
+        <form>
+        {% endblock form_head%}
+            <table border="1" align="center" style="border: #9DA0A4;text-align: center;">
+                <tbody>
+                    <tr>
+                        <td style="width: 100px">使用部门</td>
+                        <td>{{ assetform.department }}</td>
+                        <td style="width: 100px">使用人</td>
+                        <td>{{ assetform.username }}</td>
+                        <td style="width: 100px">品牌</td>
+                        <td>{{ assetform.assetbrand }}</td>
+                        <td style="width: 100px">型号</td>
+                        <td>{{ assetform.assettype }}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px">序列号</td>
+                        <td>{{ assetform.serialnumber }}</td>
+                        <td style="width: 100px">采购时间</td>
+                        <td>{{ assetform.buytime }}</td>
+                        <td style="width: 100px">采购渠道</td>
+                        <td>{{ assetform.buychannel }}</td>
+                        <td style="width: 100px">采购价格</td>
+                        <td>{{ assetform.buyprice }}</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 100px">采购人</td>
+                        <td>{{ assetform.buyer }}</td>
+                        <td style="width: 100px">类别</td>
+                        <td>{{ assetform.assetcategory }}</td>
+                        <td style="width: 100px">使用状态</td>
+                        <td>{{ assetform.usagestatus }}</td>
+                        <td style="width: 100px">放置位置</td>
+                        <td>{{ assetform.place }}</td>
+                    </tr>
+                    <tr>
+                        <td>备注</td>
+                        <td colspan="7" style="text-align: left">{{ assetform.remark }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <input id="save" style="margin: 10px;" class="button button-primary button-rounded button-small" type="submit" value="保存">
+        </form>
+
+    </div>
+</div>
+</div>
+</div>
+<script type="text/javascript">
+{% block js %}{% endblock %}
+</script>
+
+</body>
+</html>

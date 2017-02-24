@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Discard</title>
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/bootstrap.css.map" rel="stylesheet" type="text/css">
+    <link href="/static/css/buttons.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/yytx.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/bootstrap-table.min.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/lightbox.css" rel="stylesheet" type="text/css">
+    <link href="/static/css/font-awesome.css" rel="stylesheet" type="text/css">
+    <link rel="shortcut icon" type="images/x-icon" href="/static/images/title.ico">
+</head>
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12" align="right">
+            <h4 style="display: inline-block">{{ login_user }}</h4>
+            <form method="post" action="/asset/logout/" style="display: inline-block">
+                <button class="button button-box  button-border" style="border: none" type="submit">
+                    <li class="icon-off icon-large"></li>
+                </button>
+            </form>
+        </div>
+        <div class="col-md-12">
+            <div style="height: 80px;">
+                <p><h3 class="text-center">易游天下国际旅行社（北京）有限公司</h3></p>
+                <p><h3 class="text-center">固定资产管理系统</h3></p>
+        </div>
+    </div>
+    </div>
+    <div class="row" style="padding-top: 20px">
+        <div class="col-md-12">
+            <div id="toolbar" class="btn-group">
+                <button id="modify"  class="button button-royal button-pill button-small" >恢复使用</button>
+                <button id="modify"  class="button button-royal button-pill button-small" >处理</button>
+                <button id="modify"  class="button button-royal button-pill button-small" >修改</button>
+                <div id="dropdown-list" class="button-dropdown button-dropdown-royal" data-buttons="dropdown">
+                  <button class="button button-royal button-pill button-small"> 列表切换 <i class="icon-caret-down"></i></button>
+                  <ul class="button-dropdown-list is-below">
+                    <li><a style="line-height: 20px;text-align: center" href="/asset/index/">可用资产列表</a></li>
+                    <li><a style="line-height: 20px;text-align: center" href="{% url 'discard_index' %}">报废资产列表</a></li>
+                  </ul>
+                </div>
+            </div>
+            <table id="discard"></table>
+        </div>
+    </div>
+</div>
+
+<script src="/static/js/jquery-3.1.1.js"></script>
+<script src="/static/js/bootstrap.min.js"></script>
+<script src="/static/js/bootstrap-table.js"></script>
+<script src="/static/js/lightbox.js"></script>
+<script src="/static/js/bootstrap-table-zh-CN.js"></script>
+<script type="text/javascript">
+    $(function () {
+        $('#discard').bootstrapTable({
+            columns:[
+                    {checkbox: true},
+                    {field: 'ID', title: 'ID', align:'center', valign:'middle', visible:false},
+                    {field: 'assetbrand', title: '品牌', width:'', align:'center', valign:'middle'},
+                    {field: 'assettype', title: '型号', width:'', align:'center', valign:'middle'},
+                    {field: 'serianumber', title: '序列号', class:'fixed_colum', align:'center', valign:'middle'},
+                    {field: 'assetcategory', title: '类别', width:'', align:'center', valign:'middle'},
+                    {field: 'buytime', title: '采购时间', width:'', align:'center', valign:'middle'},
+{#                    {field: 'buychannel', title: '采购渠道', width:'', align:'center', valign:'middle'},#}
+                    {field: 'buyprice', title: '采购价格', width:'', align:'center', valign:'middle'},
+{#                    {field: 'buyer', title: '采购人', width:'', align:'center', valign:'middle'},#}
+                    {field: 'discardtime', title: '报废时间', width:'', align:'center', valign:'middle'},
+                    {field: 'discardreason', title: '报废原因', width:'13%', align:'center', valign:'middle'},
+                    {field: 'disposestatus', title: '处理状态', width:'', align:'center', valign:'middle'},
+                    {field: 'disposetime', title: '处理时间', width:'', align:'center', valign:'middle'},
+                    {field: 'disposeremark', title: '处理详细', width:'13%', align:'center', valign:'middle'}
+            ],
+            url: '/asset/index/discarddata/',
+            method: 'get',
+            contentType:'application/json',
+            dataType:'json',
+            toolbar:'#toolbar',
+            pagination: true,
+            sortOrder: "asc",
+            sidePagination: "client",
+            pageNumber: 1,
+            pageSize: 10,
+            pageList: [10, 25, 50, 100, 200],
+            clickToSelect: true,
+            search:true,
+            singleSelect:true,
+        })
+    });
+    $('#dropdown-list').mouseenter(function () {
+            $('#dropdown-list').children("ul").css('display','block')
+        });
+    $('#dropdown-list').mouseleave(function () {
+        $('#dropdown-list').children("ul").css('display','none')
+    });
+</script>
+</body>
+</html>
