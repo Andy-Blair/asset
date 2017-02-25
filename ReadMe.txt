@@ -2,4 +2,4 @@
 可用资产管理功能：增加、修改、查询、统计、报废、导入导出
 报废资产管理功能：恢复使用、处理资产
 用户管理：不同用户拥有不同操作权限
-运行环境：CentOS 7.2 + Nginx + Mysql + Python2.7（Django1.11）
+运行环境：CentOS 7.2 + Nginx1.11 + Mariadb5.5 + Python2.7（Django1.11）+ Uwsgi2.0
