@@ -196,10 +196,12 @@
                         for (var o in sta_data){  //遍历返回的JSON数据,遍历第一级字典,o是字典中的键值
                             t_title = o;
                             t_cl = '';
-                            cl_len = Object.keys(sta_data[o]).length * 2;  //先把所有的key取出来再求长度，再计算
+                            cl_len = Object.keys(sta_data[o]).length * 2;  //先把所有的key取出来再求长度，再计算应该生成多少列
                             for (var i in sta_data[o]){    //遍历二级列表
                                 t_cl +='<td style="width: 90px">' + Object.keys( sta_data[o][i]) + '</td>' +  //取出所有key，因为只有一个，可以不用循环
-                                        '<td style="width: 90px">' + Object.values( sta_data[o][i]) + '</td>';  //取出所有value，只有一个，不用循环
+                                        '<td style="width: 90px">' + Object.keys( sta_data[o][i]).map(function () {
+                                            return sta_data[o][i][Object.keys( sta_data[o][i])]  //返回key的值
+                                        }) + '</td>';  //取出所有value，只有一个，不用循环
                             }
                             t_b += '<tr><td colspan="' + cl_len + '">' + t_title + '</td><tr/>' +
                                     '<tr>' + t_cl + '</tr>';

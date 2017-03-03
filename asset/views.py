@@ -9,7 +9,7 @@ import json
 import xlrd
 import xlwt
 import StringIO
-import sys, datetime
+import sys,datetime
 
 reload(sys)
 sys.setdefaultencoding('utf-8')
@@ -30,14 +30,14 @@ def login_view(request):
     return render_to_response('login.html', {'loginform': loginform})
 
 
-@login_required(login_url="/asset/login")
+@login_required(login_url="/asset/login/")
 def logout_view(request):
     # 退出登陆
     logout(request)
     return HttpResponseRedirect('/')
 
 
-@login_required(login_url="/asset/login")
+@login_required(login_url="/asset/login/")
 def index(request):
     # 首页
     super_admin = False  # 超级管理员标识符，True代表超级管理员
@@ -55,7 +55,7 @@ def index(request):
     return render_to_response('index.html', {'importfile': upload, 'super_admin': super_admin, 'login_user': user.username})
 
 
-@login_required(login_url="/asset/login")
+@login_required(login_url="/asset/login/")
 def dataimport(request):
     # 导入数据
     # 待优化：上传同名文件时，不能保存前一个文件（是否需要保留多个文件？）
@@ -96,7 +96,7 @@ def dataimport(request):
     return HttpResponseRedirect('/asset/index/')
 
 
-@login_required(login_url="/asset/login")
+@login_required(login_url="/asset/login/")
 def dataexport(request):
     # 导出数据到 EXCEL
     # StringIO模块在3.0将取消
@@ -129,7 +129,7 @@ def dataexport(request):
     return response
 
 
-@login_required(login_url="/asset/login")
+@login_required(login_url="/asset/login/")
 def add(request):
     # 新增固定资产
     user = User.objects.get(id=request.session['_auth_user_id'])
@@ -151,7 +151,7 @@ def add(request):
             return HttpResponseRedirect('/asset/index/')
 
 
-@login_required(login_url="/asset/login")
+@login_required(login_url="/asset/login/")
 def modify(request, dataid):
     # 资产信息修改
     user = User.objects.get(id=request.session['_auth_user_id'])
@@ -193,7 +193,7 @@ def modify(request, dataid):
             return HttpResponse('faile')
 
 
-@login_required(login_url="/asset/login")
+@login_required(login_url="/asset/login/")
 def copyadd(request, dataid):
     # 复制新增资产
     if request.method == 'GET':
@@ -225,7 +225,7 @@ def copyadd(request, dataid):
             return HttpResponse('upload faile')
 
 
-@login_required(login_url="/asset/login")
+@login_required(login_url="/asset/login/")
 def discard(request, dataid):
     # 点击报废自动添加报废时间，报废原因必须写
     if request.method == "POST":
@@ -237,7 +237,7 @@ def discard(request, dataid):
         return HttpResponseRedirect('/asset/index')
 
 
-@login_required(login_url="/asset/login")
+@login_required(login_url="/asset/login/")
 def discard_index(request):
     super_admin = False  # 超级管理员标识符，True代表超级管理员
     admin = False  # 管理员标识符，True代表管理员
@@ -253,7 +253,7 @@ def discard_index(request):
     return render_to_response('discard.html', {'super_admin': super_admin, 'login_user': user.username})
 
 
-@login_required(login_url="/asset/login")
+@login_required(login_url="/asset/login/")
 def indexdata(request):
     # 首页bootstrap-table数据
     data = []
@@ -268,7 +268,7 @@ def indexdata(request):
     return HttpResponse(json.dumps(data), content_type="application/json")
 
 
-@login_required(login_url="/asset/login")
+@login_required(login_url="/asset/login/")
 def discarddata(requst):
     # 报废列表bootstrap-table数据
     data = []
@@ -288,7 +288,7 @@ def discarddata(requst):
 
 
 # 统计
-@login_required(login_url="/asset/login")
+@login_required(login_url="/asset/login/")
 def statistical(request):
     sum_data = {}
     categrys = models.AssetCategory.objects.filter(id__gt=1)
